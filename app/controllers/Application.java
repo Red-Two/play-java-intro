@@ -26,8 +26,7 @@ public class Application extends Controller {
     public Result addPerson() {
         Person person = formFactory.form(Person.class).bindFromRequest().get();
         JPA.em().persist(person);
-        return ok();
-        //return redirect(routes.Application.index());
+        return redirect(routes.Application.index());
     }
 
     @Transactional(readOnly = true)
