@@ -13,3 +13,4 @@ libraryDependencies ++= Seq(
   "org.hibernate" % "hibernate-entitymanager" % "4.3.7.Final"
 )
 
+PlayKeys.externalizeResources := false
