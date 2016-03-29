@@ -1,15 +1,17 @@
 package controllers;
 
-import play.*;
-import play.mvc.*;
-import play.db.jpa.*;
-import views.html.*;
 import models.Person;
 import play.data.FormFactory;
+import play.db.jpa.JPA;
+import play.db.jpa.Transactional;
+import play.mvc.Controller;
+import play.mvc.Result;
+import views.html.index;
+
 import javax.inject.Inject;
 import java.util.List;
 
-import static play.libs.Json.*;
+import static play.libs.Json.toJson;
 
 public class Application extends Controller {
 
@@ -32,6 +34,13 @@ public class Application extends Controller {
     public Result getPersons() {
         List<Person> persons = (List<Person>) JPA.em().createQuery("select p from Person p").getResultList();
         return ok(toJson(persons));
+    }
+
+    @Transactional(readOnly = true)
+    public Result getPerson(String id) {
+        String thing = id;
+        List<Person> person = (List<Person>) JPA.em().createQuery("select p from Person p where id = " + id + "").getResultList();
+        return ok(toJson(person));
     }
 
 }

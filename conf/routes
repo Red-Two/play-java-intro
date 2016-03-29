@@ -3,9 +3,12 @@
 # ~~~~
 
 # Home page
-GET     /                           controllers.Application.index()
-POST    /person                     controllers.Application.addPerson()
-GET     /persons                    controllers.Application.getPersons()
+GET         /                  @controllers.Application.index()
+POST        /person            @controllers.Application.addPerson()
+GET         /persons           @controllers.Application.getPersons()
+GET         /person/:id        @controllers.Application.getPerson(id: String)
+
+# We can add '@' before the method to have Intellij 14 not mark this as an error: http://stackoverflow.com/a/31767810
 
 # Map static resources from the /public folder to the /assets URL path
 GET     /assets/*file               controllers.Assets.at(path="/public", file)
